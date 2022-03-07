@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+<head>
+    <title>毒品防治資訊平台</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css'%}">
+</head>
+<body class="is-preload" onload="getDrugList()">
+    <div id="page-wrapper">
+
+
+        <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="{% url 'frontpage' %}">首頁</a></li>
+					<li><a href="{% url 'Newsview' %}">新聞查看</a></li>
+                    <li><a href="{% url 'Searchview' %}">統計資料</a></li>
+                    <li class="current"><a href="#">毒品介紹</a></li>
+                   <!-- 新聞管理跟統計資料管理需要登入才能操作 -->
+                    <!-- <li><a href="{% url 'Mgrnewsview' %}">新聞管理</a></li> -->
+					<!-- <li class="current"><a href="#">統計資料管理</a></li> -->
+					<li><a href="#" onclick="jumpToNews()">新聞管理</a></li>
+					<li><a href="#" onclick="jumpToSearch()">統計資料管理</a></li>
+                    <!-- <li><a class="btn" href="{% url 'login' %}">登入</a></li> -->
+					<li><a class="btn" href="#" onclick="logInOut()" id="loginSts">登入</a></li>
+					<!-- 顯示登入資訊 -->
+					<li><span class="navspan" id="loginSession"></span></li>
+
+                </ul>
+            </nav>
+
+        <!-- Main -->
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content">
+
+                            <!-- Content -->
+                            <article class="box page-content">
+
+                                <header>
+                                <h2>毒品介紹</h2>  
+                                <form action="" onsubmit="doSearch(this); return false" onreset=""> {% csrf_token %}                                      
+                                    <input type="search" class="search"  placeholder="搜尋毒品" id="searchDrug">
+                                    <button type="submit">搜尋</button>
+                                    <button type="reset" onclick="getDrugList()" style="margin-top: 10px;" >清除</button>
+                                </form>
+
+                                </header>
+                              
+                                <section>
+                                    <!-- 為了js在取圖片目錄時的來源，不顯示 -->
+                                    <img id="drugImg" src="{% static 'images/weed1.jpeg' %}" style="display:none">
+                                    <ul class="divided" id="drugContent">
+                                        
+                                        
+                                    </ul>
+                                </section>
+                                                                                     
+                            </article>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <div class="row gtr-200">
+                    <div class="col-12">
+                    <section>
+                        <h2 class="major">
+                            <span>About us</span>
+                        </h2>
+                        <p>近年來台灣吸食毒品總人數有逐漸下降的趨勢，但有報導指出吸食毒品的年齡層卻逐漸下降，且人數逐漸增加。此系統收集了台灣近年來毒品吸食人數的變化，依據性別、年齡、毒品種類等等進行比較，並以圖表視覺化呈現，另外也收集了亞洲其他國家的毒品人數相關資料，觀察其他國家是否也有相同情況。</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'assets/js/browser.min.js' %}"></script>
+        <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+        <script src="{% static 'assets/js/session.js' %}"></script>
+        <script src="{% static 'assets/js/drugInfo.js' %}"></script>
+
+</body>
+</html>
